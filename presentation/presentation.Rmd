@@ -1,0 +1,58 @@
+---
+title: "Shiny Application and Reproducible Pitch"
+author: "Luis Amigo"
+date: "12 September 2018"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Course Project
+
+This document is a small summary and usage guide of the shiny app created for the project.
+
+### Objective
+
+Main target of the app is showing in an interactive manner data from attacks to a group of webservers.
+
+Data is gotten from fail2ban actions, so they are categorized by the action that triggered fail2ban.
+
+It is beyond this presentation explaining how fail2ban works and the nature of actions scripts is private.
+
+## Data Summary
+
+Data has five columns:
+
+- Latitude and Longitude are the coordinates
+- Action is the action that triggered ban
+- asn is the ASN number of the originating ISP
+- org is the text name registered for that ASN
+
+```{r data_summary, cache=TRUE}
+data <- read.csv('https://praderas.org/attackers.csv', header=TRUE, row.names = NULL, sep=';')
+summary(data)
+```
+
+## Shiny App
+
+Here you can see the structure of the app:
+
+- On the left panel you can select the actions that you want to be displayed
+- On the main content you can see the map representation of the points using leaflet.
+Data is clustered and will uncluster if you zoom enough
+
+![](assets\app.png){ width=100% }
+
+
+## Selecting Data
+
+Use the checkboxes to select the actions you want to display
+
+Click on "Refresh Map" to reload the data
+
+Once you zoom enough and data is unclustered, hover on the marker to see the org details
+
+![](assets\uncluster.png){ width=100% }
+

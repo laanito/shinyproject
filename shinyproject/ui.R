@@ -9,12 +9,13 @@ library(leaflet)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("Attackers Data"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
-        actionButton("recalc", "New points")
+        uiOutput("checks"),
+        actionButton("recalc", "Refresh Map")
         ),
     
     # Show a plot of the generated distribution
